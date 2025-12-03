@@ -24,9 +24,8 @@ while True:
                 selection_number += 1
             print()
 
-
+            # PLAYER TURN
             attack_or_heal_choice = int(input("[1] Heal | [2] Attack Enemy: "))
-
             if attack_or_heal_choice == 1:
                 player.heal()
             elif attack_or_heal_choice == 2:
@@ -39,6 +38,8 @@ while True:
                     print("This enemy is dead!")
             else:
                 raise ValueError
+            
+            # ENEMY TURN
             print()
 
         else:
