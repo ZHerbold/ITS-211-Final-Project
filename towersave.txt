@@ -1,0 +1,10 @@
+Living Armor,-4,4,1|Living Armor,-7,4,1|
+Skeleton,-1,4,1|Goblin,-7,4,1|
+Skeleton,29,5,2|Slime,29,5,2|
+Orc,30,6,2|Golem,30,6,2|Orc,30,6,2|
+Golem,31,6,3|Slime,31,6,3|Ghost,31,6,3|
+Slime,32,7,3|Slime,32,7,3|Slime,32,7,3|
+Living Armor,34,8,4|Ghost,34,8,4|Slime,34,8,4|Living Armor,34,8,4|
+Ghost,35,9,4|Zombie,35,9,4|Zombie,35,9,4|Goblin,35,9,4|
+Slime,36,9,5|Golem,36,9,5|Slime,36,9,5|Golem,36,9,5|
+BOSS: Dragon,600,25,10|
