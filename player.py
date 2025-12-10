@@ -30,7 +30,9 @@ class Player:
         # String to track current equipment and is used to find the value of the equipment (damage multiplier)
         self.currently_equipped = "Wooden Sword"
         # sets damage to base of 10 and is multiplied by current equipment the first time
-        self.damage = 10 * self.equipment[self.currently_equipped]
+        self.base_damage = 10
+        # final damage calculation based on equipment
+        self.attack_damage = self.base_damage * self.equipment[self.currently_equipped]
 
     # getter functions
     def get_max_health(self): # MAX HEALTH
@@ -49,7 +51,11 @@ class Player:
         return self.level
     
     def get_damage(self): # DAMAGE
-        return self.damage
+        return self.base_damage
+    
+    def get_attack_damage(self): # POST EQUIPMENT DAMAGE
+        self.attack_damage = round(self.get_damage() * self.equipment[self.get_currently_equipped()])
+        return self.attack_damage
     
     def get_equipment(self): # EQUIPMENT DICT
         return self.equipment
@@ -69,12 +75,16 @@ class Player:
         print(f"LEVEL UP! You are now level {self.get_level()}!")
         # Increase max health and damage on level up
         self.max_health = round(self.get_max_health() * 1.15) # ADJUST VALUE FOR BALANCING
-        # Increase damage growth per level by 20%
-        self.set_damage(round(self.get_damage() * 1.20)) # ADJUST VALUE FOR BALANCING
+        # Increase base damage growth per level by 13%
+        self.set_damage(round(self.get_damage() * 1.13)) # ADJUST VALUE FOR BALANCING
     
     # sets the damage
     def set_damage(self, damage):
-        self.damage = damage
+        self.base_damage = damage
+    
+    # sets the attack damage
+    def set_attack_damage(self, damage):
+        self.attack_damage = damage
 
     # sets the equipment dictionary
     def set_equipment(self, equipment):
@@ -105,7 +115,7 @@ class Player:
     def load_save(self, max_health, current_health, max_damage, level, xp, max_xp, equipment, currently_equipped):
         self.max_health = max_health
         self.current_health = current_health
-        self.damage = max_damage
+        self.base_damage = max_damage
         self.level = level
         self.xp = xp
         self.max_xp = max_xp
@@ -116,7 +126,7 @@ class Player:
     # player's attack function
     def attack(self, other):
         # the damage is random from max damage - 2 to max damage (e.g., 4-6, 10-12, 100-102, etc.)
-        damage = random.randint(self.get_damage()-2,self.get_damage())
+        damage = random.randint(self.get_attack_damage()-2,self.get_attack_damage())
         # rolls the critical chance roll from a float from 0 - 1
         critical_roll = random.uniform(0,1)
         # sets is critical to false (for text display reasons)
@@ -155,8 +165,6 @@ class Player:
     def equip(self, equipment_name, multiplier):
         # adds equipment to dictionary
         self.equipment[equipment_name] = multiplier
-        # increases damage by multiplier
-        self.damage = round(self.get_damage() * multiplier)
         self.currently_equipped = equipment_name
 
     # string magic method to display player's stats to the player

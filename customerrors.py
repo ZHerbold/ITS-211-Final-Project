@@ -14,3 +14,6 @@ class QuitError(Exception):
 # This error is meant to be thrown when the player chooses an invalid choice when trying to either retry the floor or reset the game
 class RestartError(Exception):
     pass
+
+class DeadEnemyError(Exception):
+    pass

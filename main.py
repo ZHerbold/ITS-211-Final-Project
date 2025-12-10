@@ -187,6 +187,7 @@ while True:
                     else:
                         print("This enemy is dead!")
                         time.sleep(1)
+                        raise DeadEnemyError
                 # negative number or a number too big will throw this error
                 else:
                     raise InvalidEnemyChoice
@@ -306,6 +307,9 @@ while True:
             time.sleep(1)
     except InvalidGameChoice: # PLAYER DID NOT PICK A VALID GAME CHOICE (ENTERED ANYTHING OTHER THAN "A", "B", or "Q")
         print("Please enter 'A' or 'B' to either attack the enemy or heal yourself or 'Q' to save and quit.")
+        time.sleep(1)
+    except DeadEnemyError:
+        print("Select a living enemy!")
         time.sleep(1)
     except QuitError: # PLAYER DID NOT ENTER Y OR N
         print("Please enter either 'y' or 'n' in order to quit or restart/retry.")
