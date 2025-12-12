@@ -135,8 +135,11 @@ while True:
 while True:
     # try and except block to catch errors
     try:
-        # this is the "current" floor monster list
-        enemy_list = tower_mob_list[current_floor_index]
+        # this is the "current" floor monster list and prevents out of bounds error when loading a finished save
+        if current_floor_index < 10:
+            enemy_list = tower_mob_list[current_floor_index]
+        else:
+            enemy_list = tower_mob_list[9]
         # sets a couple of variables to check if the mobs and player are still alive
         enemies_alive = True
         player_alive = True
@@ -155,7 +158,10 @@ while True:
         # if both the enemy and player are alive, game continues as normal
         if enemies_alive and player_alive:
             # Print out user info and floor number
-            print(f"\n\nFLOOR {tower[current_floor_index].get_floor_number()}")
+            if current_floor_index < 10:
+                print(f"\n\nFLOOR {tower[current_floor_index].get_floor_number()}")
+            else:
+                print("GAME COMPLETED")
             print(player)
             print()
             # Print out the enemy list
@@ -267,7 +273,8 @@ while True:
             print("All enemies are dead. You Cleared This Floor!")
             time.sleep(1)
             # grants the player experience based on the floor
-            player.gain_experience(tower[current_floor_index].give_xp())
+            if current_floor_index < 10:
+                player.gain_experience(tower[current_floor_index].give_xp())
             time.sleep(1)
             # increases the floor number
             current_floor_index = current_floor_index + 1
@@ -292,9 +299,19 @@ while True:
             else:
                 print("YOU WIN!!!!!")
                 time.sleep(1)
-                # saves to file and quit
-                save_to_file()
-                break
+                game_restart = input("Do you want to restart the game? (y/n):").lower()
+                if game_restart == "y":
+                    # resets the player stats back to default
+                    player.reset()
+                    # creates a brand new tower
+                    tower, tower_mob_list, current_floor_index = create_tower()
+                elif game_restart == "n":
+                    # saves to file and quit
+                    current_floor_index = 10
+                    save_to_file()
+                    break
+                else:
+                    raise QuitError
     # ERRORS
     except ValueError: # PLAYER DID NOT PICK A VALID ENEMY (TYPED A STRING)
         print("Please enter a number to attack any of the enemy (e.g., to attack [1] Skeleton, type 1 and press enter).")

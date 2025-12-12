@@ -19,6 +19,8 @@ class Floor:
         # For floors above 1 scale XP more aggressively so players level by floor 2
         if self.floor_number <= 1:
             calculated_xp = base_xp
+        elif self.floor_number == 10:
+            calculated_xp = 0 # NO XP given on last floor
         else:
             multiplier = 1.5
             calculated_xp = round(self.floor_number * multiplier * base_xp)
