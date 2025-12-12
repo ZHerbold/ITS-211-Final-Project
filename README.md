@@ -39,7 +39,7 @@ This program was written to demonstrate Zander Herbold's understanding of OOP, m
 
 The proposal of this project can be found here: [Project Proposal](https://docs.google.com/document/d/17pAjdDT7lbv4gHvbbwltwdBfE3rNMzMZOnLfvYtejhs/edit?usp=sharing) 
 
-The project presentation youtube link: LINK HERE
+The project presentation youtube link: [Youtube](https://youtu.be/ASRzffBtHWQ)
 # EXAMPLE OUTPUT 
 
 (RUNNING THIS PROGRAM FOR THE FIRST TIME SHOULD OUTPUT SOMETHING LIKE THIS)
