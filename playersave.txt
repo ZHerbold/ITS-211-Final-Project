@@ -1,1 +1,0 @@
-100,100,10,1,0,80,{'Wooden Sword': 1},Wooden Sword,0
